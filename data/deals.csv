@@ -1,0 +1,49 @@
+deal_id,sku,deal_type,start_day,days,discount_pct,platform_funding_share,promo_fee,archetype
+D-0001,SKU-0001,Deal of the Day,30,3,0.1,0.37,559,winner
+D-0002,SKU-0001,Lightning Deal,90,3,0.25,0.92,1064,fixable
+D-0003,SKU-0002,Deal of the Day,30,4,0.05,0.58,5834,dud
+D-0004,SKU-0002,Lightning Deal,90,7,0.1,0.41,650,winner
+D-0005,SKU-0003,Festival Event,30,6,0.26,0.94,574,fixable
+D-0006,SKU-0003,Coupon,90,3,0.06,0.54,3632,dud
+D-0007,SKU-0004,Festival Event,4,4,0.1,0.47,658,thin_data
+D-0008,SKU-0004,Lightning Deal,90,5,0.14,0.36,1133,winner
+D-0009,SKU-0005,Coupon,30,3,0.1,0.39,1270,winner
+D-0010,SKU-0005,Coupon,90,6,0.25,0.91,983,fixable
+D-0011,SKU-0006,Lightning Deal,30,4,0.05,0.62,5907,dud
+D-0012,SKU-0006,Lightning Deal,90,4,0.12,0.48,1250,winner
+D-0013,SKU-0007,Coupon,30,5,0.29,0.9,1152,fixable
+D-0014,SKU-0007,Lightning Deal,90,4,0.05,0.51,4044,dud
+D-0015,SKU-0008,Coupon,4,4,0.13,0.34,1353,thin_data
+D-0016,SKU-0008,Festival Event,90,4,0.12,0.48,967,winner
+D-0017,SKU-0009,Deal of the Day,30,4,0.15,0.37,1401,winner
+D-0018,SKU-0009,Festival Event,90,6,0.3,0.97,1181,fixable
+D-0019,SKU-0010,Coupon,30,7,0.05,0.57,4337,dud
+D-0020,SKU-0010,Lightning Deal,90,4,0.11,0.35,1477,winner
+D-0021,SKU-0011,Coupon,30,6,0.25,0.99,1302,fixable
+D-0022,SKU-0011,Coupon,90,7,0.05,0.79,5686,dud
+D-0023,SKU-0012,Deal of the Day,4,6,0.1,0.42,1460,thin_data
+D-0024,SKU-0012,Deal of the Day,90,6,0.14,0.32,983,winner
+D-0025,SKU-0013,Deal of the Day,30,7,0.1,0.5,1386,winner
+D-0026,SKU-0013,Deal of the Day,90,5,0.3,0.91,957,fixable
+D-0027,SKU-0014,Deal of the Day,30,7,0.07,0.55,3561,dud
+D-0028,SKU-0014,Lightning Deal,90,7,0.12,0.44,1032,winner
+D-0029,SKU-0015,Coupon,30,5,0.3,0.93,1253,fixable
+D-0030,SKU-0015,Coupon,90,6,0.07,0.7,3824,dud
+D-0031,SKU-0016,Lightning Deal,4,7,0.11,0.38,561,thin_data
+D-0032,SKU-0016,Lightning Deal,90,5,0.13,0.44,1208,winner
+D-0033,SKU-0017,Lightning Deal,30,3,0.1,0.46,1276,winner
+D-0034,SKU-0017,Festival Event,90,5,0.25,0.98,908,fixable
+D-0035,SKU-0018,Festival Event,30,5,0.08,0.53,5002,dud
+D-0036,SKU-0018,Coupon,90,6,0.11,0.3,1441,winner
+D-0037,SKU-0019,Deal of the Day,30,6,0.28,0.92,986,fixable
+D-0038,SKU-0019,Lightning Deal,90,5,0.07,0.57,4525,dud
+D-0039,SKU-0020,Coupon,4,7,0.14,0.42,647,thin_data
+D-0040,SKU-0020,Deal of the Day,90,5,0.14,0.49,848,winner
+D-0041,SKU-0021,Deal of the Day,30,4,0.1,0.44,747,winner
+D-0042,SKU-0021,Deal of the Day,90,5,0.29,0.93,1010,fixable
+D-0043,SKU-0022,Coupon,30,5,0.05,0.7,5508,dud
+D-0044,SKU-0022,Deal of the Day,90,5,0.15,0.44,1034,winner
+D-0045,SKU-0023,Lightning Deal,30,6,0.26,0.96,1023,fixable
+D-0046,SKU-0023,Coupon,90,5,0.06,0.74,5210,dud
+D-0047,SKU-0024,Lightning Deal,4,7,0.1,0.33,1091,thin_data
+D-0048,SKU-0024,Coupon,90,5,0.14,0.37,1178,winner

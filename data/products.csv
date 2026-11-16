@@ -1,0 +1,25 @@
+sku,category,list_price,unit_cost,base_daily_units
+SKU-0001,Home & Kitchen,399,250.29,55
+SKU-0002,Personal Care,499,345.44,35
+SKU-0003,Grocery,699,443.88,42
+SKU-0004,Electronics Accessories,199,142.89,70
+SKU-0005,Toys,699,477.49,76
+SKU-0006,Sports & Fitness,299,188.65,33
+SKU-0007,Home & Kitchen,1499,1101.94,68
+SKU-0008,Personal Care,499,359.13,81
+SKU-0009,Grocery,399,252.7,83
+SKU-0010,Electronics Accessories,399,286.4,75
+SKU-0011,Toys,399,294.71,49
+SKU-0012,Sports & Fitness,699,463.16,55
+SKU-0013,Home & Kitchen,199,141.63,63
+SKU-0014,Personal Care,199,128.14,86
+SKU-0015,Grocery,499,370.58,38
+SKU-0016,Electronics Accessories,299,205.3,82
+SKU-0017,Toys,399,292.72,87
+SKU-0018,Sports & Fitness,499,373.37,75
+SKU-0019,Home & Kitchen,199,138.42,73
+SKU-0020,Personal Care,499,350.95,55
+SKU-0021,Grocery,499,313.23,70
+SKU-0022,Electronics Accessories,399,269.01,73
+SKU-0023,Toys,699,505.57,50
+SKU-0024,Sports & Fitness,199,150.3,62
