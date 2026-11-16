@@ -91,3 +91,14 @@ def test_number_extraction_ignores_ids():
 def test_tool_results_are_json_serialisable(box):
     json.dumps(box.call("get_deal_metrics", {"deal_id": "D-0002"}))
     json.dumps(box.call("get_category_benchmark", {"category": "Toys"}))
+
+
+def test_reviewing_a_deal_twice_does_not_duplicate_the_proposal(box):
+    first = review_deal("D-0001", box)
+    second = review_deal("D-0001", box)
+    assert first["proposal"] == second["proposal"] == "PRP-0001"
+    assert "already waiting" in second["summary"]
+    assert len(approval.list_all(box.proposals_path)) == 1
+    # once a person has decided, a fresh review may propose again
+    approval.decide(box.proposals_path, "PRP-0001", "Asha Rao", approve=False)
+    assert review_deal("D-0001", box)["proposal"] == "PRP-0002"
