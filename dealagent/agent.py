@@ -12,7 +12,8 @@ SYSTEM = (
     "then call propose_action exactly once. The action must be the rule_action you were given. "
     "Write the rationale in two or three plain sentences a category manager can check. "
     "Quote only numbers that appear in the tool results, and do no arithmetic of your own. "
-    "After the proposal is recorded, reply with a one-line summary."
+    "After the proposal is recorded, reply with a one-line summary. "
+    "If the tool says a proposal is already pending for the deal, say so and stop."
 )
 MAX_STEPS = 6
 MAX_OUTPUT_TOKENS = 4000   # per review; the loop stops when this budget is spent
@@ -39,8 +40,14 @@ class ScriptedBrain:
                 "deal_id": deal_id, "action": m["rule_action"],
                 "rationale": self._rationale(m, results["b"]),
             })
-        return {"stop_reason": "end_turn", "output_tokens": 30,
-                "content": [{"type": "text", "text": f"{deal_id}: {m['rule_action']} recorded for approval."}]}
+        p = results["p"]
+        if "recorded" in p:
+            text = f"{deal_id}: {m['rule_action']} recorded for approval."
+        elif "already_pending" in p:
+            text = f"{deal_id}: {p['already_pending']} is already waiting for a decision; nothing new recorded."
+        else:
+            text = f"{deal_id}: proposal was refused ({p.get('error', 'unknown reason')})."
+        return {"stop_reason": "end_turn", "output_tokens": 30, "content": [{"type": "text", "text": text}]}
 
     @staticmethod
     def _use(tool_id: str, name: str, args: dict) -> dict:
@@ -104,8 +111,8 @@ def review_deal(deal_id: str, toolbox: ToolBox, brain=None) -> dict:
         results = []
         for c in calls:
             res = toolbox.call(c["name"], c["input"])
-            if c["name"] == "propose_action" and "recorded" in res:
-                proposal = res["recorded"]
+            if c["name"] == "propose_action":
+                proposal = res.get("recorded") or res.get("already_pending") or proposal
             results.append({"type": "tool_result", "tool_use_id": c["id"], "content": json.dumps(res)})
         messages.append({"role": "user", "content": results})
         if spent >= MAX_OUTPUT_TOKENS:

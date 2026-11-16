@@ -71,6 +71,10 @@ class ToolBox:
         bad = ungrounded_numbers(rationale, m, *self.benchmarks.values())
         if bad:
             return {"error": f"These numbers are not in the tool results: {bad}. Rewrite the rationale."}
+        for existing in approval.list_all(self.proposals_path):
+            if existing["deal_id"] == deal_id and existing["status"] == "pending":
+                return {"already_pending": existing["proposal_id"], "status": "pending",
+                        "note": "This deal already has a proposal waiting for a decision. Nothing new was recorded."}
         p = approval.add(self.proposals_path, {
             "deal_id": deal_id, "sku": m["sku"], "action": action, "rationale": rationale,
             "target_platform_share_pct": m.get("target_platform_share_pct"),
