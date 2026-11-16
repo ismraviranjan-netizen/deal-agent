@@ -53,6 +53,22 @@ A recommendation the agent recorded for approval:
 > profit of -5647, an ROI of -0.17. The platform funds 92.0% of the discount; ask the brand to
 > bring that down to 61% before repeating.
 
+## Live run with Claude
+
+The agent was run against Claude Sonnet 5.5 on four deals, one for each outcome. Every review
+finished in four steps (metrics, benchmark, proposal, summary), reached the action the decision rule
+gives, and had no rationale rejected by the grounding check. These are Claude's explanations as recorded:
+
+| Deal | Action | Claude's rationale |
+|---|---|---|
+| D-0001 | REPEAT | D-0001 lifted units 3.08x versus baseline, above the Home & Kitchen median of 2.18x, with 320 net incremental units after pull-forward. Its ROI was 5.16 against a category median of -0.43, and investment was 4.4% of GMS versus a median of 21.25%, so the deal earned more than it cost. |
+| D-0002 | RENEGOTIATE | Units rose with a 2.12 spike (category median 2.18), but the platform funded 92.0% of the discount and the deal's ROI was -0.17, with an incremental profit of -5647. Investment was 31.7% of GMS versus a category median of 21.25%, and the breakeven platform share is 75.9%, so we should renegotiate funding toward the 61% target share. |
+| D-0003 | STOP | The deal barely moved volume: units spike was 1.02 versus a Personal Care median of 2.44, and net incremental units were -11 after 13 pull-forward units. Investment was 11.8% of GMS (category median 6.95%) and ROI was -1.21 against a median of 1.49, with incremental profit of -9538. |
+| D-0007 | TEST_AGAIN | The rule says there are too few clean days before the deal (baseline_days 3) to trust the baseline, so the results should be confirmed with another test. On the face of it the deal looks strong: units spike 3.39 vs the category median of 2.69, and ROI 2.7 vs the median of 1.79, with investment at 5.6% of GMS vs a median of 6.8%. These figures rest on the short baseline, so they are not reliable enough to repeat or stop the deal. |
+
+Cost was roughly 1 to 2 US cents per review (read from the API credit balance, November 2026).
+Four deals is a smoke test, not an evaluation: the eval gate below still runs on the scripted brain.
+
 ## How it works
 
 ```mermaid
@@ -77,6 +93,7 @@ it with the category benchmark, and write a short reason a manager can check.
 - **The model cannot override the rule.** `propose_action` rejects any action that differs from the decision rule's.
 - **No invented numbers.** Every number in the rationale must match a value in the tool results, or the proposal is rejected and the model has to rewrite it (`dealagent/grounding.py`).
 - **Look before you propose.** A proposal for a deal the agent has not pulled metrics for is refused.
+- **One open proposal per deal.** Reviewing a deal again while its proposal is still pending records nothing new.
 - **Human approval.** Proposals stay pending until a named person approves or rejects them, and a decision cannot be changed afterwards.
 - **Hard stops.** A step cap, an output-token budget and a kill switch (`DEAL_AGENT_KILL=1`).
 
@@ -106,7 +123,7 @@ python -m dealagent review D-0002 --live       # set DEAL_AGENT_MODEL to choose 
 
 ```bash
 pip install pytest
-python -m pytest -q                            # 28 tests, including hand-worked economics
+python -m pytest -q                            # 29 tests, including hand-worked economics
 python evals/run_evals.py --threshold 0.9      # the eval gate
 ```
 
