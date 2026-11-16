@@ -1,0 +1,15 @@
+[project]
+name = "deal-agent"
+version = "0.1.0"
+description = "An AI agent that scores e-commerce promotional deals and proposes what to do next, for a human to approve."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ravi Ranjan" }]
+dependencies = []
+
+[project.optional-dependencies]
+live = ["anthropic"]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
